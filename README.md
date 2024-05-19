@@ -6,7 +6,6 @@
 1. 站點名稱搜尋
 2. 目前可用車輛 / 總停車格 的排序功能
 3. 分頁功能 (Optional)
-4. 指定站點置頂功能 (Optional)
 
 ## Recommended IDE Setup
 

@@ -27,7 +27,6 @@ const timeFormat = (val) => {
 1. 站點名稱搜尋
 2. 目前可用車輛 / 總停車格 的排序功能
 3. 分頁功能 (Optional)
-4. 指定站點置頂功能 (Optional)
 -->
   <div class="my-4">
     <p class="my-4 pl-2">
@@ -39,7 +38,6 @@ const timeFormat = (val) => {
       <thead>
         <tr>
           <th class="w-12">#</th>
-          <th>置頂</th>
           <th>場站名稱</th>
           <th>場站區域</th>
           <th>目前可用車輛
@@ -67,5 +65,54 @@ const timeFormat = (val) => {
         </tr>
       </tbody>
     </table>
+    
+    <!-- 頁籤 -->
+    <ul class="my-4 flex justify-center">
+      <li class="page-item cursor-pointer">
+        <span class="page-link">第一頁</span>
+      </li>
+      <li class="page-item cursor-pointer">
+        <span class="page-link">&lt;</span>
+      </li>
+
+      <li class="page-item cursor-pointer active">
+        <span class="page-link">1</span>
+      </li>
+      <li class="page-item cursor-pointer">
+        <span class="page-link">2</span>
+      </li>
+      <li class="page-item cursor-pointer">
+        <span class="page-link">3</span>
+      </li>
+      <li class="page-item cursor-pointer">
+        <span class="page-link">4</span>
+      </li>
+      <li class="page-item cursor-pointer">
+        <span class="page-link">5</span>
+      </li>
+      <li class="page-item cursor-pointer">
+        <span class="page-link">6</span>
+      </li>
+      <li class="page-item cursor-pointer">
+        <span class="page-link">7</span>
+      </li>
+      <li class="page-item cursor-pointer">
+        <span class="page-link">8</span>
+      </li>
+      <li class="page-item cursor-pointer">
+        <span class="page-link">9</span>
+      </li>
+      <li class="page-item cursor-pointer">
+        <span class="page-link">10</span>
+      </li>
+
+      <li class="page-item cursor-pointer">
+        <span class="page-link" href>&gt;</span>
+      </li>      
+      <li class="page-item cursor-pointer">
+        <span class="page-link">最末頁</span>
+      </li>
+    </ul>
+
   </div>
 </template>
