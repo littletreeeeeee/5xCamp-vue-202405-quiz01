@@ -23,8 +23,11 @@ const timeFormat = (val) => {
 
 <template>  
 <!--
-練習： YouBike 臺北市公共自行車即時資訊 
-完成下列表格，並加入: 1. 站點名稱搜尋、2. 目前可用車輛 / 總停車格 的排序功能
+練習： YouBike 臺北市公共自行車即時資訊，實作以下功能
+1. 站點名稱搜尋
+2. 目前可用車輛 / 總停車格 的排序功能
+3. 分頁功能 (Optional)
+4. 指定站點置頂功能 (Optional)
 -->
   <div id="app">
     <p style="padding-left: 1rem;">
@@ -35,6 +38,7 @@ const timeFormat = (val) => {
       <thead>
         <tr>
           <th>#</th>
+          <th>置頂</th>
           <th>場站名稱</th>
           <th>場站區域</th>
           <th>目前可用車輛
@@ -45,12 +49,15 @@ const timeFormat = (val) => {
             <i class="fa fa-sort-asc" aria-hidden="true"></i>
             <i class="fa fa-sort-desc" aria-hidden="true"></i>
           </th>
-          <th>資料更新時間</th>
+          <th>資料更新時間</th>          
         </tr>
       </thead>
       <tbody>
         <tr v-for="(s, idx) in uBikeStops" :key="s.sno">
           <td>{{ idx +1 }}</td>
+          <td>
+            <input type="checkbox">
+          </td>
           <td>{{ s.sna }}</td>
           <td>{{ s.sarea }}</td>
           <td>{{ s.available_rent_bikes }}</td>

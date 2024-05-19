@@ -1,6 +1,12 @@
 # vue-202405-quiz01
 
-This template should help get you started developing with Vue 3 in Vite.
+## 練習： YouBike 臺北市公共自行車即時資訊 
+完成下列表格，並加入: 
+
+1. 站點名稱搜尋
+2. 目前可用車輛 / 總停車格 的排序功能
+3. 分頁功能 (Optional)
+4. 指定站點置頂功能 (Optional)
 
 ## Recommended IDE Setup
 
