@@ -54,9 +54,6 @@ const timeFormat = (val) => {
       <tbody>
         <tr v-for="(s, idx) in uBikeStops" :key="s.sno">
           <td>{{ idx +1 }}</td>
-          <td>
-            <input type="checkbox">
-          </td>
           <td>{{ s.sna }}</td>
           <td>{{ s.sarea }}</td>
           <td>{{ s.available_rent_bikes }}</td>
