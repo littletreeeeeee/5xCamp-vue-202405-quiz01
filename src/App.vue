@@ -29,15 +29,16 @@ const timeFormat = (val) => {
 3. 分頁功能 (Optional)
 4. 指定站點置頂功能 (Optional)
 -->
-  <div id="app">
-    <p style="padding-left: 1rem;">
-      站點名稱搜尋: <input type="text">
+  <div class="my-4">
+    <p class="my-4 pl-2">
+      站點名稱搜尋: 
+      <input type="text" class="border w-60 p-1 ml-2">
     </p>
     
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>#</th>
+          <th class="w-12">#</th>
           <th>置頂</th>
           <th>場站名稱</th>
           <th>場站區域</th>
@@ -68,9 +69,3 @@ const timeFormat = (val) => {
     </table>
   </div>
 </template>
-
-<style>
-#app {
-  margin-top: 1rem;
-}
-</style>
