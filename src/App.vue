@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue';
 const uBikeStops = ref([]);
-
 // 欄位說明:
 // sno：站點代號、 sna：場站名稱(中文)、 total：場站總停車格、
 // available_rent_bikes：場站目前可用車輛數量、 
@@ -12,13 +11,41 @@ fetch('https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediat
   .then(res => res.text())
   .then(data => {
     uBikeStops.value = JSON.parse(data);
+    searchResult.value=JSON.parse(data);
   });
 
+const currentSortValue=ref(null);
+const currentAction=ref(null);
 const timeFormat = (val) => {
   // 時間格式
   const pattern = /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/;
   return val.replace(pattern, '$1/$2/$3 $4:$5:$6');
 };
+
+const searchText=ref('');
+const searchResult=ref()
+const searchTextChange=()=>{
+  searchResult.value=uBikeStops.value.filter(d=>d.sna.includes(searchText.value));
+}
+
+const sortData=(currentVal,action)=>{
+  if(action==null || action=='desc')
+    action='asc';
+  else 
+    action='desc';
+
+  currentSortValue.value = currentVal;
+  currentAction.value = action;
+
+  if (action == 'desc') {
+    searchResult.value =searchResult.value
+      .sort((a, b) => b[currentVal] - a[currentVal]);
+  } else {
+    searchResult.value = searchResult.value
+      .sort((a, b) => a[currentVal] - b[currentVal]);
+  }
+}
+
 </script>
 
 <template>  
@@ -31,7 +58,7 @@ const timeFormat = (val) => {
   <div class="my-4">
     <p class="my-4 pl-2">
       站點名稱搜尋: 
-      <input type="text" class="border w-60 p-1 ml-2">
+      <input type="text" class="border w-60 p-1 ml-2" v-model="searchText" v-on:keyup="searchTextChange">
     </p>
     
     <table class="table table-striped">
@@ -40,19 +67,19 @@ const timeFormat = (val) => {
           <th class="w-12">#</th>
           <th>場站名稱</th>
           <th>場站區域</th>
-          <th>目前可用車輛
-            <i class="fa fa-sort-asc" aria-hidden="true"></i>
-            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+          <th @click="sortData('available_rent_bikes',currentAction)">目前可用車輛
+            <i class="fa fa-sort-asc" aria-hidden="true"   v-if="currentSortValue=='available_rent_bikes' && currentAction=='asc'"></i>
+            <i class="fa fa-sort-desc" aria-hidden="true"  v-if="currentSortValue=='available_rent_bikes' && currentAction=='desc'"></i>
           </th>
-          <th>總停車格
-            <i class="fa fa-sort-asc" aria-hidden="true"></i>
-            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+          <th @click="sortData('total',currentAction)">總停車格
+            <i class="fa fa-sort-asc" aria-hidden="true"  v-if="currentSortValue=='total' && currentAction=='asc' "></i>
+            <i class="fa fa-sort-desc" aria-hidden="true"  v-if="currentSortValue=='total' && currentAction=='desc'"></i>
           </th>
           <th>資料更新時間</th>          
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(s, idx) in uBikeStops" :key="s.sno">
+        <tr v-for="(s, idx) in searchResult" :key="s.sno">
           <td>{{ idx +1 }}</td>
           <td>{{ s.sna }}</td>
           <td>{{ s.sarea }}</td>
